@@ -22,7 +22,7 @@ class Columns extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    // console.log("RUN: ", {props: this.props, nextProps})
+    console.log("RUN: ", {props: this.props, nextProps})
 
     return !(
       nextProps.canvasTimeStart === this.props.canvasTimeStart &&
