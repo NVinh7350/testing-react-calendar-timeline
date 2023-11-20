@@ -78,16 +78,17 @@ export function iterateTimes(start, end, unit, timeSteps, callback) {
 }
 
 export function iterateTimes1(start, end, unit, timeSteps, callback) {
-  let time = moment(start).startOf("day")
+  const newUnit = "day"
+  let time = moment(start).startOf(newUnit)
 
-  if (timeSteps[unit] && timeSteps[unit] > 1) {
-    let value = time.get(unit)
-    time.set(unit, value - value % timeSteps[unit])
+  if (timeSteps[newUnit] && timeSteps[newUnit] > 1) {
+    let value = time.get(newUnit)
+    time.set(newUnit, value - value % timeSteps[newUnit])
   }
 
   while (time.valueOf() < end) {
     // console.log("LOG:: ", {time: time.valueOf(), end})
-    let nextTime = moment(time).add(timeSteps[unit] || 1, `${unit}s`)
+    let nextTime = moment(time).add(timeSteps[newUnit] || 1, `${newUnit}s`)
     callback(time, nextTime)
     time = nextTime
   }
