@@ -62,7 +62,7 @@ export default class Items extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    // console.log("RUN: ", {props: this.props, nextProps})
+    console.log("RUN ITEMS - shouldComponentUpdate:: ", {props: this.props, nextProps})
 
     return !(
       arraysEqual(nextProps.groups, this.props.groups) &&
@@ -71,7 +71,7 @@ export default class Items extends Component {
       nextProps.keys === this.props.keys &&
       nextProps.canvasTimeStart === this.props.canvasTimeStart &&
       nextProps.canvasTimeEnd === this.props.canvasTimeEnd &&
-      // nextProps.canvasWidth === this.props.canvasWidth &&
+      nextProps.canvasWidth === this.props.canvasWidth &&
       nextProps.selectedItem === this.props.selectedItem &&
       nextProps.selected === this.props.selected &&
       nextProps.dragSnap === this.props.dragSnap &&

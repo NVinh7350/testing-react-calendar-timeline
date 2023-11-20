@@ -69,7 +69,7 @@ export function iterateTimes(start, end, unit, timeSteps, callback) {
   }
 
   while (time.valueOf() < end) {
-    console.log("LOG:: ", {time: time.valueOf(), end})
+    // console.log("LOG:: ", {time: time.valueOf(), end})
     let nextTime = moment(time).add(timeSteps[unit] || 1, `${unit}s`)
     callback(time, nextTime)
     time = nextTime

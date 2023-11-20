@@ -320,7 +320,6 @@ export default class ReactCalendarTimeline extends Component {
   }
 
   componentDidMount() {
-    // console.log("RUN RESIZE")
     this.resize(this.props)
 
     if (this.props.resizeDetector && this.props.resizeDetector.addListener) {
@@ -399,7 +398,6 @@ export default class ReactCalendarTimeline extends Component {
 
     // are we changing zoom? Report it!
     if (this.props.onZoom && newZoom !== oldZoom) {
-      // console.log("RUN ZOM")
       this.props.onZoom(this.getTimelineContext(), this.getTimelineUnit())
     }
 
@@ -520,7 +518,6 @@ export default class ReactCalendarTimeline extends Component {
   }
 
   handleWheelZoom = (speed, xPosition, deltaY) => {
-    // console.log("Log : handleWheelZoom:", {speed, xPosition, deltaY})
     this.changeZoom(1.0 + speed * deltaY / 500, xPosition / this.state.width)
   }
 

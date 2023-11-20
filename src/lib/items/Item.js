@@ -91,7 +91,7 @@ export default class Item extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    // console.log("RUN:::: 1231", {props: this.props, nextProps, state: this.state, nextState})
+    console.log("RUN ITEM - shouldComponentUpdate:: ", {props: this.props, nextProps, state: this.state, nextState})
 
     var shouldUpdate =
       nextState.dragging !== this.state.dragging ||
@@ -105,7 +105,7 @@ export default class Item extends Component {
       nextProps.item !== this.props.item ||
       nextProps.canvasTimeStart !== this.props.canvasTimeStart ||
       nextProps.canvasTimeEnd !== this.props.canvasTimeEnd ||
-      // nextProps.canvasWidth !== this.props.canvasWidth ||
+      nextProps.canvasWidth !== this.props.canvasWidth ||
       (nextProps.order ? nextProps.order.index : undefined) !== 
         (this.props.order ? this.props.order.index : undefined) ||
       nextProps.dragSnap !== this.props.dragSnap ||
