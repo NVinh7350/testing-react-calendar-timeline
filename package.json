@@ -1,7 +1,7 @@
 {
-  "name": "react-calendar-timeline",
+  "name": "react-calendar-timeline-custom",
   "version": "0.28.0",
-  "description": "react calendar timeline",
+  "description": "react calendar timeline custom",
   "main": "lib/index.js",
   "scripts": {
     "build": "npm run build:lib",
