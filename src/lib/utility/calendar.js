@@ -61,7 +61,24 @@ export function calculateTimeForXPosition(
 
 export function iterateTimes(start, end, unit, timeSteps, callback) {
   console.log("RUN iterateTimes: ", {start, end, unit, timeSteps})
+
   let time = moment(start).startOf(unit)
+
+  if (timeSteps[unit] && timeSteps[unit] > 1) {
+    let value = time.get(unit)
+    time.set(unit, value - value % timeSteps[unit])
+  }
+
+  while (time.valueOf() < end) {
+    // console.log("LOG:: ", {time: time.valueOf(), end})
+    let nextTime = moment(time).add(timeSteps[unit] || 1, `${unit}s`)
+    callback(time, nextTime)
+    time = nextTime
+  }
+}
+
+export function iterateTimes1(start, end, unit, timeSteps, callback) {
+  let time = moment(start).startOf("day")
 
   if (timeSteps[unit] && timeSteps[unit] > 1) {
     let value = time.get(unit)
