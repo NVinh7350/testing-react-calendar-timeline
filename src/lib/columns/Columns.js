@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { iterateTimes, iterateTimes1 } from '../utility/calendar'
+import { iterateTimes } from '../utility/calendar'
 import { TimelineStateConsumer } from '../timeline/TimelineStateContext'
 
 const passThroughPropTypes = {
@@ -51,12 +51,10 @@ class Columns extends Component {
     const ratio = canvasWidth / (canvasTimeEnd - canvasTimeStart)
 
     let lines = []
-    let newLines = []
 
     iterateTimes(
       canvasTimeStart,
       canvasTimeEnd,
-      minUnit,
       timeSteps,
       (time, nextTime) => {
         const minUnitValue = time.get(minUnit === 'day' ? 'date' : minUnit)
@@ -94,54 +92,10 @@ class Columns extends Component {
             }}
           />
         )
-      }
+      },
     )
 
-    iterateTimes1(
-      canvasTimeStart,
-      canvasTimeEnd,
-      minUnit,
-      timeSteps,
-      (time, nextTime) => {
-        const minUnitValue = time.get(minUnit === 'day' ? 'date' : minUnit)
-        const firstOfType = minUnitValue === (minUnit === 'day' ? 1 : 0)
-
-        let classNamesForTime = []
-        if (verticalLineClassNamesForTime) {
-          classNamesForTime = verticalLineClassNamesForTime(
-            time.unix() * 1000, // turn into ms, which is what verticalLineClassNamesForTime expects
-            nextTime.unix() * 1000 - 1
-          )
-        }
-
-        // TODO: rename or remove class that has reference to vertical-line
-        const classNames =
-          'rct-vl' +
-          (firstOfType ? ' rct-vl-first' : '') +
-          (minUnit === 'day' || minUnit === 'hour' || minUnit === 'minute'
-            ? ` rct-day-${time.day()} `
-            : ' ') +
-          classNamesForTime.join(' ')
-
-        const left = getLeftOffsetFromDate(time.valueOf())
-        const right = getLeftOffsetFromDate(nextTime.valueOf())
-        newLines.push(
-          <div
-            key={`line-${time.valueOf()}`}
-            className={classNames}
-            style={{
-              pointerEvents: 'none',
-              top: '0px',
-              left: `${left}px`,
-              width: `${right - left}px`,
-              height: `${height}px`
-            }}
-          />
-        )
-      }
-    )
-
-    console.log("Log : lines:", {lines, newLines})
+    console.log("Log : lines:", lines)
 
     return <div className="rct-vertical-lines">{lines}</div>
   }

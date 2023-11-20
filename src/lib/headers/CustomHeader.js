@@ -1,8 +1,8 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import { TimelineHeadersConsumer } from './HeadersContext'
+import React from 'react'
 import { TimelineStateConsumer } from '../timeline/TimelineStateContext'
-import { iterateTimes, calculateXPositionForTime } from '../utility/calendar'
+import { iterateTimes } from '../utility/calendar'
+import { TimelineHeadersConsumer } from './HeadersContext'
 
 export class CustomHeader extends React.Component {
   static propTypes = {
@@ -108,7 +108,6 @@ export class CustomHeader extends React.Component {
     iterateTimes(
       canvasTimeStart,
       canvasTimeEnd,
-      unit,
       timeSteps,
       (startTime, endTime) => {
         const left = getLeftOffsetFromDate(startTime.valueOf())
@@ -120,7 +119,8 @@ export class CustomHeader extends React.Component {
           labelWidth: width,
           left
         })
-      }
+      }, 
+      unit,
     )
     return intervals
   }
