@@ -60,7 +60,7 @@ export function calculateTimeForXPosition(
 }
 
 export function iterateTimes(start, end, timeSteps, callback, unit) {
-  const newUnit = unit || "day";
+  const newUnit = unit || 'day';
 
   let time = moment(start).startOf(newUnit)
 

@@ -22,8 +22,6 @@ class Columns extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    console.log("RUN COLUMNS - shouldComponentUpdate:: ", {props: this.props, nextProps})
-
     return !(
       nextProps.canvasTimeStart === this.props.canvasTimeStart &&
       nextProps.canvasTimeEnd === this.props.canvasTimeEnd &&
@@ -94,8 +92,6 @@ class Columns extends Component {
         )
       },
     )
-
-    console.log("Log : lines:", lines)
 
     return <div className="rct-vertical-lines">{lines}</div>
   }

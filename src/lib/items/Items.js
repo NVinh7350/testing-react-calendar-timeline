@@ -62,8 +62,6 @@ export default class Items extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    console.log("RUN ITEMS - shouldComponentUpdate:: ", {props: this.props, nextProps})
-
     return !(
       arraysEqual(nextProps.groups, this.props.groups) &&
       arraysEqual(nextProps.items, this.props.items) &&

@@ -91,8 +91,6 @@ export default class Item extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("RUN ITEM - shouldComponentUpdate:: ", {props: this.props, nextProps, state: this.state, nextState})
-
     var shouldUpdate =
       nextState.dragging !== this.state.dragging ||
       nextState.dragTime !== this.state.dragTime ||
