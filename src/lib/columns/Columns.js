@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { iterateTimes } from '../utility/calendar'
 import { TimelineStateConsumer } from '../timeline/TimelineStateContext'
+import { iterateTimes } from '../utility/calendar'
 
 const passThroughPropTypes = {
   canvasTimeStart: PropTypes.number.isRequired,
@@ -47,16 +47,18 @@ class Columns extends Component {
       getLeftOffsetFromDate
     } = this.props
     const ratio = canvasWidth / (canvasTimeEnd - canvasTimeStart)
+    const DEFAULT_UNIT = 'day';
 
     let lines = []
 
     iterateTimes(
       canvasTimeStart,
       canvasTimeEnd,
+      DEFAULT_UNIT,
       timeSteps,
       (time, nextTime) => {
-        const minUnitValue = time.get(minUnit === 'day' ? 'date' : minUnit)
-        const firstOfType = minUnitValue === (minUnit === 'day' ? 1 : 0)
+        const minUnitValue = time.get('date')
+        const firstOfType = minUnitValue === 1
 
         let classNamesForTime = []
         if (verticalLineClassNamesForTime) {
@@ -70,9 +72,7 @@ class Columns extends Component {
         const classNames =
           'rct-vl' +
           (firstOfType ? ' rct-vl-first' : '') +
-          (minUnit === 'day' || minUnit === 'hour' || minUnit === 'minute'
-            ? ` rct-day-${time.day()} `
-            : ' ') +
+          ` rct-day-${time.day()} ` +
           classNamesForTime.join(' ')
 
         const left = getLeftOffsetFromDate(time.valueOf())
@@ -90,7 +90,7 @@ class Columns extends Component {
             }}
           />
         )
-      },
+      }
     )
 
     return <div className="rct-vertical-lines">{lines}</div>

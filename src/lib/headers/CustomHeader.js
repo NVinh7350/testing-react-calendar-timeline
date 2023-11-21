@@ -108,6 +108,7 @@ export class CustomHeader extends React.Component {
     iterateTimes(
       canvasTimeStart,
       canvasTimeEnd,
+      unit,
       timeSteps,
       (startTime, endTime) => {
         const left = getLeftOffsetFromDate(startTime.valueOf())
@@ -119,8 +120,7 @@ export class CustomHeader extends React.Component {
           labelWidth: width,
           left
         })
-      }, 
-      unit,
+      }
     )
     return intervals
   }

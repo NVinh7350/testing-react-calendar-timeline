@@ -59,18 +59,16 @@ export function calculateTimeForXPosition(
   return timeFromCanvasTimeStart + canvasTimeStart
 }
 
-export function iterateTimes(start, end, timeSteps, callback, unit) {
-  const newUnit = unit || 'day';
+export function iterateTimes(start, end, unit, timeSteps, callback) {
+  let time = moment(start).startOf(unit)
 
-  let time = moment(start).startOf(newUnit)
-
-  if (timeSteps[newUnit] && timeSteps[newUnit] > 1) {
-    let value = time.get(newUnit)
-    time.set(newUnit, value - value % timeSteps[newUnit])
+  if (timeSteps[unit] && timeSteps[unit] > 1) {
+    let value = time.get(unit)
+    time.set(unit, value - value % timeSteps[unit])
   }
 
   while (time.valueOf() < end) {
-    let nextTime = moment(time).add(timeSteps[newUnit] || 1, `${newUnit}s`)
+    let nextTime = moment(time).add(timeSteps[unit] || 1, `${unit}s`)
     callback(time, nextTime)
     time = nextTime
   }
