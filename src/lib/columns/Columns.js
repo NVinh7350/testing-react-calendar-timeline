@@ -27,11 +27,11 @@ class Columns extends Component {
     return !(
       nextProps.canvasTimeStart === this.props.canvasTimeStart &&
       nextProps.canvasTimeEnd === this.props.canvasTimeEnd &&
-      // nextProps.canvasWidth === this.props.canvasWidth &&
+      nextProps.canvasWidth === this.props.canvasWidth &&
       nextProps.lineCount === this.props.lineCount &&
       nextProps.minUnit === this.props.minUnit &&
       nextProps.timeSteps === this.props.timeSteps &&
-      // nextProps.height === this.props.height &&
+      nextProps.height === this.props.height &&
       nextProps.verticalLineClassNamesForTime ===
         this.props.verticalLineClassNamesForTime
     )
