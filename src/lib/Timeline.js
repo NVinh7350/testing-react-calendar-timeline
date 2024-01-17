@@ -1004,6 +1004,8 @@ export default class ReactCalendarTimeline extends Component {
       height: `${height}px`
     }
 
+    console.log("INFO TEST ANNV")
+
     return (
       <TimelineStateProvider
         visibleTimeStart={visibleTimeStart}
